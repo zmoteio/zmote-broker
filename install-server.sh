@@ -13,7 +13,7 @@ MONGOLAB_URI=`heroku config:get -a zmote MONGOLAB_URI`
 cat > ${TMP_FILE} <<EOT
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          meetme-server
+# Provides:          $SERVICE
 # Required-Start:    $local_fs $network
 # Required-Stop:     $local_fs
 # Default-Start:     2 3 4 5
