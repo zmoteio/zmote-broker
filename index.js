@@ -151,7 +151,12 @@ function setup() {
      
     client.on('message', function (topic, message) {
       // message is Buffer 
-      var msg = JSON.parse(message.toString());
+      try {
+        var msg = JSON.parse(message.toString());
+      } catch(err) {
+        console.log("Bad message", err);
+        return;
+      }
       console.log("Message", msg);
       var path = topic.split('/');
       connectDB
@@ -167,6 +172,7 @@ function setup() {
             } else if (msg.ip && msg.ts) { // Hello message
                 widget.localIP = msg.ip;
                 widget.version = msg.version;
+                widget.fs_version = msg.fs_version;
                 widget.connected = true;
                 widget.ota = false;
             }
