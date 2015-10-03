@@ -170,6 +170,8 @@ function setup() {
                 widget.connected = false;
                 widget.ota = true;
             } else if (msg.ip && msg.ts) { // Hello message
+                if (msg.name)
+                    widget.name = msg.name;
                 widget.localIP = msg.ip;
                 widget.version = msg.version;
                 widget.fs_version = msg.fs_version;
