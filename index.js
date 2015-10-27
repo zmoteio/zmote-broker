@@ -177,6 +177,10 @@ function setup() {
                 widget.fs_version = msg.fs_version;
                 widget.connected = true;
                 widget.ota = false;
+                if (widget.ota_version && widget.ota_version != widget.version && widget.ota_retries < 10) {
+                    client.publish('zmote/towidget/'+widget.chipID, widget.ota_msg);
+                    widget.ota_retries++;
+                }
             }
             widget.lastEvent = new Date();
             //console.log("widget", widget, widget.save);
